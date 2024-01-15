@@ -71,104 +71,101 @@ export const loginUser = async (req: Request, res: Response) => {
   }
 };
 
-// export const getloggedInUserInfo = async (req: Request, res: Response) => {
-//   try {
-//     const user = await User.findOne({ _id: req?.user?._id });
-//     if (user) {
-//       res.status(200).send(removeSensitiveInfo(user));
-//     } else {
-//       res.status(401).send("User Not Found");
-//     }
-//   } catch (err) {
-//     res.status(500).send({ message: err.message });
-//   }
-// };
+export const getloggedInUserInfo = async (req: Request, res: Response) => {
+  try {
+    const user = await User.findOne({ _id: req?.user?._id });
+    if (user) {
+      res.status(200).send(removeSensitiveInfo(user));
+    } else {
+      res.status(401).send("User Not Found");
+    }
+  } catch (err:any) {
+    res.status(500).send({ message: err.message });
+  }
+};
 
-// export const getAllUsers = async (req: Request, res: Response) => {
-//   try {
-//     const users = await User.find({}).sort({ _id: -1 }).select("-password");
-//     res.status(200).send({
-//       data: users,
-//     });
-//   } catch (err) {
-//     res.status(500).send({
-//       message: err.message,
-//     });
-//   }
-// };
+export const getAllUsers = async (req: Request, res: Response) => {
+  try {
+    const users = await User.find({}).sort({ _id: -1 }).select("-password");
+    res.status(200).send({
+      data: users,
+    });
+  } catch (err:any) {
+    res.status(500).send({
+      message: err.message,
+    });
+  }
+};
 
-// export const deleteUser = async (req: Request, res: Response) => {
-//   try {
-//     await User.findOneAndDelete({ _id: req.params.id })
-//       .exec()
-//       .then((result) => {
-//         res.status(200).send({
-//           message: `${result.name} is successfully removed!`,
-//           success: true,
-//         });
-//       })
-//       .catch((err) => {
-//         res.status(401).send({
-//           message: err.message,
-//           success: false,
-//         });
-//       });
-//   } catch (err) {
-//     res.status(500).send({
-//       message: err.message,
-//       success: false,
-//     });
-//   }
-// };
+export const deleteUser = async (req: Request, res: Response) => {
+  try {
+    await User.findOneAndDelete({ _id: req.params.id })
+      .exec()
+      .then((result:any) => {
+        res.status(200).send({
+          message: `${result.name} is successfully removed!`,
+          success: true,
+        });
+      })
+      .catch((err) => {
+        res.status(401).send({
+          message: err.message,
+          success: false,
+        });
+      });
+  } catch (err:any) {
+    res.status(500).send({
+      message: err.message,
+      success: false,
+    });
+  }
+};
 
-// export const getUser = async (req: Request, res: Response) => {
-//   try {
-//     const user = await User.findById(req.params.id);
-//     if (user) {
-//       res.status(200).send(user);
-//     } else {
-//       res.status(401).send("User Not Found");
-//     }
-//   } catch (err) {
-//     res.status(500).send({
-//       message: err.message,
-//     });
-//   }
-// };
+export const getUser = async (req: Request, res: Response) => {
+  try {
+    const user = await User.findById(req.params.id);
+    if (user) {
+      res.status(200).send(user);
+    } else {
+      res.status(401).send("User Not Found");
+    }
+  } catch (err:any) {
+    res.status(500).send({
+      message: err.message,
+    });
+  }
+};
 
-// export const updateUserInfo = async (req: Request, res: Response) => {
-//   try {
-//     const { ...info } = req.body;
+export const updateUserInfo = async (req: Request, res: Response) => {
+  try {
+    const { ...info } = req.body;
 
-//     const isExist = await User.findOne({ _id: req.user._id });
+    const isExist = await User.findOne({ _id: req.user._id });
 
-//     const image = req.file ? req.file.path : undefined;
 
-//     const updateInfo = image ? { image, ...info } : info;
-
-//     if (isExist) {
-//       const result = await User.findByIdAndUpdate(
-//         { _id: req.user._id },
-//         updateInfo,
-//         {
-//           new: true,
-//         }
-//       );
-//       res.status(200).json({
-//         success: true,
-//         message: "User Info Update successfully",
-//         data: removeSensitiveInfo(result),
-//       });
-//     } else {
-//       res.status(201).json({
-//         success: false,
-//         message: "Update unsuccessful",
-//       });
-//     }
-//   } catch (error) {
-//     res.status(201).json({
-//       success: false,
-//       message: error.message,
-//     });
-//   }
-// };
+    if (isExist) {
+      const result = await User.findByIdAndUpdate(
+        { _id: req.user._id },
+        info,
+        {
+          new: true,
+        }
+      );
+      res.status(200).json({
+        success: true,
+        message: "User Info Update successfully",
+        data: removeSensitiveInfo(result),
+      });
+    } else {
+      res.status(201).json({
+        success: false,
+        message: "Update unsuccessful",
+      });
+    }
+  } catch (err:any) {
+    res.status(201).json({
+      success: false,
+      message: err.message,
+    });
+  }
+};
