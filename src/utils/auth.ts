@@ -3,7 +3,7 @@ import { IUser } from "../modules/user/user.interface";
 
 export const generateToken = async (user:IUser) => {
   return jwt.sign(
-    { name: user.name, email: user.email, _id: user?._id },
+    { firstName: user.firstName, lastName:user.lastName, email: user.email, _id: user?._id },
     process.env.ACCESS_TOKEN_SECRET as string,
     {
       expiresIn: "7d",
