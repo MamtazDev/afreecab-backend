@@ -72,3 +72,15 @@ try {
     });
   }
 }
+export const getBookingById = async(req: Request, res: Response)=>{
+try {
+    const booking = await Booking.findById(req.params.id);
+
+    res.status(200).json(booking);
+} catch (err:any) {
+    res.status(500).send({
+      message: err.message,
+      success: false,
+    });
+  }
+}
