@@ -14,11 +14,12 @@ export const registerUser = async (req: Request, res: Response) => {
       });
     } else {
       const newUser = new User({
-        name: req.body.name,
-        userName: req.body.userName,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
         email: req.body.email,
         password: bcrypt.hashSync(req.body.password),
-        
+        phoneNumber:req.body.phoneNumber,
+        address:req.body.address
       });
 
       const user = await newUser.save();
