@@ -4,11 +4,11 @@ import { IUser } from "./user.interface";
 
 const userSchema = new Schema<IUser>(
   {
-    name: {
+    firstName: {
       type: String,
       required: true,
     },
-    userName: {
+    lastName: {
       type: String,
       required: true,
     },
@@ -18,6 +18,14 @@ const userSchema = new Schema<IUser>(
       unique: true,
     },
     password: {
+      type: String,
+      required: true,
+    },
+    phoneNumber: {
+      type: String,
+      required: true,
+    },
+    address: {
       type: String,
       required: true,
     },
