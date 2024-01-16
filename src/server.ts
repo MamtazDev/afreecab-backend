@@ -12,13 +12,14 @@ import bookingRoutes from "./modules/booking/booking.routes"
 import connectDB from "./config/db";
 
 // CONFIGURATIONS
-
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = path.dirname(__filename);
 
 dotenv.config();
 const app = express();
 app.use(express.json());
 app.use(cors());
-app.use(express.urlencoded({ extended: true }))
+// app.use(express.urlencoded({ extended: true }))
 const PORT = process.env.PORT || 8000;
 
 // DATABASE CONNECTION
@@ -26,10 +27,9 @@ connectDB();
 
 // ROUTES
 app.use('/api/v1/user', userRoutes);
-app.use('/api/v1/booking',bookingRoutes)
+app.use('/api/v1/booking', bookingRoutes)
 
-app.use("/assets", express.static(path.join(__dirname, "uploads")));
-
+app.use('/assets', express.static(path.join(__dirname, "uploads")));
 
 app.get("/", (req, res) => {
     res.send("Server is runnig");
