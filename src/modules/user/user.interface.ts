@@ -6,5 +6,6 @@ export interface IUser {
     password:string;
     phoneNumber:string;
     address:string;
+    image?:string;
 }
 
