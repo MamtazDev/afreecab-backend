@@ -29,7 +29,7 @@ connectDB();
 app.use('/api/v1/user', userRoutes);
 app.use('/api/v1/booking', bookingRoutes)
 
-app.use('/assets', express.static(path.join(__dirname, "uploads")));
+app.use('/assets', express.static(path.join(__dirname, "../uploads")));
 
 app.get("/", (req, res) => {
     res.send("Server is runnig");
