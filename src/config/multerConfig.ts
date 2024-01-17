@@ -15,15 +15,15 @@ import path from "path";
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    if (!fs.existsSync("public")) {
-      fs.mkdirSync("public");
-    }
+    // if (!fs.existsSync("public")) {
+    //   fs.mkdirSync("public");
+    // }
 
-    if (!fs.existsSync("public/images")) {
-      fs.mkdirSync("public/images");
-    }
+    // if (!fs.existsSync("public/images")) {
+    //   fs.mkdirSync("public/images");
+    // }
 
-    cb(null, "public/images");
+    cb(null, "uploads/");
   },
   filename: function (req, file, cb) {
     cb(null, Date.now() + file.originalname);
@@ -45,14 +45,6 @@ const upload = multer({
     fileSize: 3 * 1024 * 1024,
   },
 });
-// const storage = multer.diskStorage({
-//   destination: function (req, file, cb) {
-//     cb(null, "public/assets");
-//   },
-//   filename: function (req, file, cb) {
-//     cb(null, file.originalname);
-//   },
-// });
-// const upload = multer({ storage });
+
 
 export default upload;
