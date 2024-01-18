@@ -4,6 +4,10 @@ import { IUser } from "./user.interface";
 
 const userSchema = new Schema<IUser>(
   {
+    role:{
+      type:String,
+      default: "user"
+    },
     firstName: {
       type: String,
       required: true,
