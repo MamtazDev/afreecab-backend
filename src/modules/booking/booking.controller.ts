@@ -49,7 +49,7 @@ export const updatePaymentStatus = async(req: Request, res: Response)=>{
 
 export const getAllBookings = async(req: Request, res: Response)=>{
 try {
-    const allBookings = await Booking.find({});
+    const allBookings = await Booking.find({}).populate("user");
 
     res.status(200).json(allBookings);
 } catch (err:any) {
