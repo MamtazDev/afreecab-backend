@@ -4,10 +4,8 @@ import dotenv from "dotenv";
 import path from "path";
 import { fileURLToPath } from "url";
 
-
-import userRoutes from "./modules/user/user.routes"
-import bookingRoutes from "./modules/booking/booking.routes"
-
+import userRoutes from "./modules/user/user.routes";
+import bookingRoutes from "./modules/booking/booking.routes";
 
 import connectDB from "./config/db";
 
@@ -26,15 +24,15 @@ const PORT = process.env.PORT || 8000;
 connectDB();
 
 // ROUTES
-app.use('/api/v1/user', userRoutes);
-app.use('/api/v1/booking', bookingRoutes)
+app.use("/api/v1/user", userRoutes);
+app.use("/api/v1/booking", bookingRoutes);
 
-app.use('/assets', express.static(path.join(__dirname, "../uploads")));
+app.use("/assets", express.static(path.join(__dirname, "../uploads")));
 
 app.get("/", (req, res) => {
-    res.send("Server is runnig");
-  });
-  
-  app.listen(PORT, () => {
-    console.log(`Server is running on ${PORT}`);
-  });
+  res.send("Server is runnig");
+});
+
+app.listen(PORT, () => {
+  console.log(`Server is running on ${PORT}`);
+});

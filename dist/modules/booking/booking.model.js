@@ -1,6 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+
 const mongoose_1 = require("mongoose");
+
 const bookingSchema = new mongoose_1.Schema({
     fromAddress: {
         type: String,
@@ -12,7 +14,7 @@ const bookingSchema = new mongoose_1.Schema({
     },
     bookingDate: {
         type: String,
-        required: true,
+        required: false,
     },
     totalPassenger: {
         type: Number,
